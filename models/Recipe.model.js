@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const recipeSchema = new Schema(
   {
+
     title: {
       type: String,
       unique: true 
@@ -14,13 +15,10 @@ const recipeSchema = new Schema(
         enum: ['Easy Peasy', 'Amateur Chef', 'UltraPro Chef']
       },
     
-    ingredients: [
-      {
-        type: String,
-        enum: ['']
-      }
-    ],
-
+      ingredients: {
+        type: [ String ]
+       },
+   
     cuisine: {
       type: String,
       required: true 
@@ -34,24 +32,21 @@ const recipeSchema = new Schema(
      
       image: {
         type: String,
-        default: https://images.media-allrecipes.com/images/75131.jpg 
+        default : "https://images.media-allrecipes.com/images/75131.jpg" 
       },
      
      duration: {
         type: Number,
         min: 0, 
       },
-
       creator: {
         type: String,
       },
-
       created: {
         type: Date,
         default: () => new Date(2022, 3, 9)
       },
-
-
+    
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
